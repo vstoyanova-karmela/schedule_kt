@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Truck & Driver Scheduler</title>
+  <script>
+    const githubClientId = "Ov23liNE83Ror7iJa9JE";
+    const redirectUri = "https://4708-78-83-245-122.ngrok-free.app/callback";
+
+    // If not authenticated, show login button
+    if (!localStorage.getItem("github_token")) {
+      document.write(`
+        <style>
+          body { background-color: #0f0f0f; color: white; font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; }
+          button { background: #24292e; color: white; padding: 12px 20px; font-size: 18px; border: none; border-radius: 5px; cursor: pointer; }
+          button:hover { background: #333; }
+        </style>
+        <h1>🔒 Достъп до KarmelaTrans Scheduler</h1>
+        <button onclick="loginWithGitHub()">Вход с GitHub</button>
+      `);
+
+      window.loginWithGitHub = function() {
+        const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${githubClientId}&redirect_uri=${redirectUri}&scope=read:user`;
+        window.location.href = githubAuthUrl;
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- Once authenticated, the rest of the app (your existing scheduler UI) will show -->
+</body>
+</html>
